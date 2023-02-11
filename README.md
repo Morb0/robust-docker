@@ -1,7 +1,7 @@
 # Dockerized Robust Tools
 *//TODO: Description*
 
-## [Robust.Cdn]
+## Robust.Cdn
 [Repository](https://github.com/space-wizards/Robust.Cdn) | [Documentation](https://docs.spacestation14.io/en/hosting/robust-cdn) | [Docker Hub](https://hub.docker.com/r/morb0/robust.cdn)
 
 Run:
