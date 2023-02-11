@@ -10,7 +10,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
         with:
-          repository: https://github.com/space-wizards/Robust.Cdn.git
+          repository: space-wizards/Robust.Cdn
           
       - name: Checkout files
         uses: Bhacaz/checkout-files@v2
