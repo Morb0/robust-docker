@@ -9,7 +9,7 @@
 $ docker run \
 	--mount type=bind,source=/opt/cdn/appsettings.json,target=/publish/appsettings.json \
 	--mount type=bind,source=/var/lib/wizards-builds/builds,target=/builds \
-	--mount type=volume,source=cdn_data,target=/publish/content.db \
+	--mount type=volume,source=cdn_data,target=/publish/data \
 	--port 27690:27690 \
 	morb0/robust.cdn:latest
 ```
