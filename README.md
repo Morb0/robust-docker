@@ -1,6 +1,52 @@
 # Dockerized Robust Tools
 *//TODO: Description*
 
+## SS14.Watchdog
+[Repository](https://github.com/space-wizards/SS14.Watchdog) | [Documentation](https://docs.spacestation14.io/en/getting-started/hosting) | [Docker Hub](https://hub.docker.com/r/morb0/watchdog)
+
+**Run:**
+```console
+$ docker run \
+	--mount type=bind,source=/opt/watchdog/appsettings.yml,target=/publish/appsettings.yml \
+	--mount type=bind,source=/var/lib/wizards/instances,target=/publish/instances \
+	--port 80:5000 \
+	morb0/watchdog:latest
+```
+Where */opt/watchdog/appsettings.json* and */var/lib/wizards/instances* is your host directories.
+
+**Example `appsettings.yml`:**
+```yml
+Serilog:
+  Using: [ "Serilog.Sinks.Console", "Serilog.Sinks.Loki" ]
+  MinimumLevel:
+    Default: Information
+    Override:
+      SS14: Debug
+      Microsoft: "Warning"
+      Microsoft.Hosting.Lifetime: "Information"
+      Microsoft.AspNetCore: Warning
+
+  WriteTo:
+    - Name: Console
+      Args:
+        OutputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {SourceContext}] {Message:lj}{NewLine}{Exception}"
+
+  Enrich: [ "FromLogContext" ]
+
+BaseUrl: "http://0.0.0.0:80/"
+
+AllowedHosts: "*"
+
+Servers:
+  Instances:
+    test:
+      Name: "Test Server"
+      ApiToken: "mysecrettoken"
+      ApiPort: 1212
+      # ...
+```
+
+
 ## Robust.Cdn
 [Repository](https://github.com/space-wizards/Robust.Cdn) | [Documentation](https://docs.spacestation14.io/en/hosting/robust-cdn) | [Docker Hub](https://hub.docker.com/r/morb0/robust.cdn)
 
