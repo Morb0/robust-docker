@@ -8,6 +8,6 @@ RUN dotnet publish -c Release --no-self-contained -o /publish
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
 WORKDIR /publish
 COPY --from=build-env /publish .
-RUN ls
+RUN mkdir data
 EXPOSE 27690
 ENTRYPOINT ["./Robust.Cdn"]
