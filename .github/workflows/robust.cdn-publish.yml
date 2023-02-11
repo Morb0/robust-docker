@@ -29,4 +29,4 @@ jobs:
           context: .
           file: Dockerfile.Cdn
           push: true
-          tags: ${{ GITHUB_SHA::7 }}
+          tags: morb0/robust.cdn:latest
