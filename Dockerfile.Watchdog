@@ -1,0 +1,13 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 as build-env
+WORKDIR /src
+COPY Robust.Cdn/*.csproj .
+RUN dotnet restore
+COPY Robust.Cdn .
+RUN dotnet publish -c Release --no-self-contained -o /publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
+WORKDIR /publish
+COPY --from=build-env /publish .
+RUN mkdir data
+EXPOSE 27690
+ENTRYPOINT ["./Robust.Cdn"]
