@@ -4,7 +4,7 @@
 ## Robust.Cdn
 [Repository](https://github.com/space-wizards/Robust.Cdn) | [Documentation](https://docs.spacestation14.io/en/hosting/robust-cdn) | [Docker Hub](https://hub.docker.com/r/morb0/robust.cdn)
 
-Run:
+**Run:**
 ```console
 $ docker run \
 	--mount type=bind,source=/opt/cdn/appsettings.json,target=/publish/appsettings.json \
@@ -14,7 +14,7 @@ $ docker run \
 ```
 Where */opt/cdn/appsettings.json* and */var/lib/wizards-builds/builds* is your host directories.
 
-Example `appsettings.json`:
+**Example `appsettings.json`:**
 ```json
 {
   "Logging": {
