@@ -6,6 +6,7 @@ COPY SS14.Watchdog .
 RUN dotnet publish -c Release --no-self-contained -o /publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
+COPY --from=mcr.microsoft.com/dotnet/aspnet:7.0 /usr/share/dotnet/shared /usr/share/dotnet/shared
 WORKDIR /publish
 COPY --from=build-env /publish .
 RUN mkdir data
