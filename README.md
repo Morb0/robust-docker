@@ -8,11 +8,11 @@
 ```console
 $ docker run \
 	--mount type=bind,source=/opt/watchdog/appsettings.yml,target=/publish/appsettings.yml \
-	--mount type=bind,source=/var/lib/wizards/instances,target=/publish/instances \
+	--mount type=bind,source=/opt/ss14_instances,target=/publish/instances \
 	--port 80:5000 \
 	morb0/watchdog:latest
 ```
-Where */opt/watchdog/appsettings.json* and */var/lib/wizards/instances* is your host directories.
+Where */opt/watchdog/appsettings.json* and */opt/ss14_instances* is your host directories.
 
 **Example `appsettings.yml`:**
 ```yml
