@@ -1,4 +1,4 @@
-name: Publish Watchdog image
+name: Publish SS14.Watchdog image
 
 on: workflow_dispatch
 
@@ -29,4 +29,4 @@ jobs:
           context: .
           file: Dockerfile.Watchdog
           push: true
-          tags: morb0/watchdog:latest
+          tags: morb0/ss14-watchdog:latest
