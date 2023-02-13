@@ -65,7 +65,7 @@ authServer: "https://central.spacestation14.io/auth"
 
 
 ## SS14.Watchdog
-[Repository](https://github.com/space-wizards/SS14.Watchdog) | [Documentation](https://docs.spacestation14.io/en/getting-started/hosting) | [Docker Hub](https://hub.docker.com/r/morb0/watchdog)
+[Repository](https://github.com/space-wizards/SS14.Watchdog) | [Documentation](https://docs.spacestation14.io/en/getting-started/hosting) | [Docker Hub](https://hub.docker.com/r/morb0/ss14-watchdog)
 
 **Run:**
 ```console
