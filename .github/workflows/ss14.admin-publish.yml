@@ -11,6 +11,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: space-wizards/SS14.Admin
+
+      - name: Checout SS14
+        run: git clone https://github.com/space-wizards/space-station-14/tree/0982ef3cea8a1e623756433480e0ba4ab8fbc4a3 SS14
           
       - name: Checkout files
         uses: Bhacaz/checkout-files@v2
