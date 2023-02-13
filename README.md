@@ -2,7 +2,7 @@
 *//TODO: Description*
 
 ## SS14.Admin
-[Repository](https://github.com/space-wizards/SS14.Admin) | Documentation (Nope) | [Docker Hub](https://hub.docker.com/r/morb0/ss14-admin)
+[Repository](https://github.com/space-wizards/SS14.Admin) | Documentation | [Docker Hub](https://hub.docker.com/r/morb0/ss14-admin)
 
 ❗ Only can be build on `0982ef3cea8a1e623756433480e0ba4ab8fbc4a3` commit of SS14 repository.  Because current repository submodule version not updated for `PlayTime` feature and latest use unsupported .NET 7 ¯\\_(ツ)_/¯
 
@@ -18,6 +18,8 @@ $ docker run \
 	-p 27689:5000 \
 	morb0/ss14_admin:latest
 ```
+Where */opt/admin/appsettings.yml* is your host directory.
+
 
 **Example `appsettings.yml`:**
 ```yml
