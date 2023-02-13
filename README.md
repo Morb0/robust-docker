@@ -13,12 +13,11 @@ $ cd SS14; git checkout 0982ef3cea8a1e623756433480e0ba4ab8fbc4a3;
 **Run:**
 ```console
 $ docker run \
-	--mount type=bind,source=/opt/admin/appsettings.yml,target=/publish/appsettings.yml \
-	-v ss14-admin_data:/root/.aspnet/DataProtection-Keys \
+	--mount type=bind,source=/my/path/appsettings.yml,target=/publish/appsettings.yml \
+	--mount type=volume,source=ss14-admin_data,target=/root/.aspnet/DataProtection-Keys \
 	-p 27689:5000 \
 	morb0/ss14_admin:latest
 ```
-Where */opt/admin/appsettings.yml* is your host directory.
 
 
 **Example `appsettings.yml`:**
@@ -89,12 +88,11 @@ location /admin/ {
 **Run:**
 ```console
 $ docker run \
-	--mount type=bind,source=/opt/watchdog/appsettings.yml,target=/publish/appsettings.yml \
-	--mount type=bind,source=/opt/ss14_instances,target=/publish/instances \
+	--mount type=bind,source=/my/path/appsettings.yml,target=/publish/appsettings.yml \
+	--mount type=bind,source=/my/path/ss14_instances,target=/publish/instances \
 	-p 80:5000 \
 	morb0/watchdog:latest
 ```
-Where */opt/watchdog/appsettings.json* and */opt/ss14_instances* is your host directories.
 
 **Example `appsettings.yml`:**
 ```yml
@@ -135,14 +133,12 @@ Servers:
 **Run:**
 ```console
 $ docker run \
-	--mount type=bind,source=/opt/cdn/appsettings.json,target=/publish/appsettings.json \
-	--mount type=bind,source=/var/lib/wizards-builds/builds,target=/builds \
+	--mount type=bind,source=/my/path/appsettings.json,target=/publish/appsettings.json \
+	--mount type=bind,source=/my/path/builds,target=/builds \
 	--mount type=volume,source=cdn_data,target=/publish/data \
 	-p 27690:27690 \
 	morb0/robust.cdn:latest
 ```
-Where */opt/cdn/appsettings.json* and */var/lib/wizards-builds/builds* is your host directories.
-And *cdn_data* is Docker volume.
 
 **Example `appsettings.json`:**
 ```json
