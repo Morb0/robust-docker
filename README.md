@@ -63,6 +63,25 @@ Auth:
 authServer: "https://central.spacestation14.io/auth"
 ```
 
+**Example Nginx config:**
+```nginx
+location /admin/ {
+	proxy_pass          http://localhost:27689;
+	proxy_http_version  1.1;
+	proxy_set_header    Upgrade $http_upgrade;
+	proxy_set_header    Connection keep-alive;
+	proxy_set_header    Host $host;
+	proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+	proxy_set_header    X-Forwarded-Proto https;
+	proxy_cache_bypass  $http_upgrade;
+
+	# Necessary to avoid errors from too large headers thanks to large cookies.
+	proxy_buffer_size        128k;
+	proxy_buffers            4 256k;
+	proxy_busy_buffers_size  256k;
+}
+```
+
 
 ## SS14.Watchdog
 [Repository](https://github.com/space-wizards/SS14.Watchdog) | [Documentation](https://docs.spacestation14.io/en/getting-started/hosting) | [Docker Hub](https://hub.docker.com/r/morb0/ss14-watchdog)
@@ -107,25 +126,6 @@ Servers:
       ApiToken: "mysecrettoken"
       ApiPort: 1212
       # ...
-```
-
-**Example Nginx config:**
-```nginx
-location /admin/ {
-	proxy_pass          http://localhost:27689;
-	proxy_http_version  1.1;
-	proxy_set_header    Upgrade $http_upgrade;
-	proxy_set_header    Connection keep-alive;
-	proxy_set_header    Host $host;
-	proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header    X-Forwarded-Proto https;
-	proxy_cache_bypass  $http_upgrade;
-
-	# Necessary to avoid errors from too large headers thanks to large cookies.
-	proxy_buffer_size        128k;
-	proxy_buffers            4 256k;
-	proxy_busy_buffers_size  256k;
-}
 ```
 
 
