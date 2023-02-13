@@ -4,7 +4,7 @@
 ## SS14.Admin
 [Repository](https://github.com/space-wizards/SS14.Admin) | Documentation (Nope) | [Docker Hub](https://hub.docker.com/r/morb0/ss14-admin)
 
-❗ Only can be build on `0982ef3cea8a1e623756433480e0ba4ab8fbc4a3` commit of SS14 repository.  Because current repository submodule version not updated for `PlayTime` feature and latest use unsupported .NET 7 ¯\_(ツ)_/¯
+❗ Only can be build on `0982ef3cea8a1e623756433480e0ba4ab8fbc4a3` commit of SS14 repository.  Because current repository submodule version not updated for `PlayTime` feature and latest use unsupported .NET 7 ¯\\_(ツ)_/¯
 
 ```console
 $ cd SS14; git checkout 0982ef3cea8a1e623756433480e0ba4ab8fbc4a3;
@@ -13,7 +13,7 @@ $ cd SS14; git checkout 0982ef3cea8a1e623756433480e0ba4ab8fbc4a3;
 **Run:**
 ```console
 $ docker run \
-	--mount type=bind,source=/opt/watchdog/appsettings.yml,target=/publish/appsettings.yml \
+	--mount type=bind,source=/opt/admin/appsettings.yml,target=/publish/appsettings.yml \
 	-v ss14-admin_data:/root/.aspnet/DataProtection-Keys \
 	-p 27689:5000 \
 	morb0/ss14_admin:latest
