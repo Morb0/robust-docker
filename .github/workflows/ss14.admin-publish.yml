@@ -10,7 +10,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
         with:
-          repository: space-wizards/SS14.Admin
+          repository: Morb0/SS14.Admin
 
       - name: Checkout SS14
         run: |
