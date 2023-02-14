@@ -15,7 +15,7 @@ $ cd SS14; git checkout 0982ef3cea8a1e623756433480e0ba4ab8fbc4a3;
 $ docker run \
 	--mount type=bind,source=/my/path/appsettings.yml,target=/publish/appsettings.yml \
 	--mount type=volume,source=ss14-admin_data,target=/root/.aspnet/DataProtection-Keys \
-	-p 27689:27689 \
+	-p 27689:5000 \
 	morb0/ss14_admin:latest
 ```
 
@@ -45,9 +45,9 @@ ConnectionStrings:
 
 AllowedHosts: "*"
 
-urls: "http://0.0.0.0:27689/"
+urls: "http://localhost:27689/"
 
-PathBase: "/admin"
+PathBase: "/"
 
 WebRootPath: "/publish/wwwroot"
 
