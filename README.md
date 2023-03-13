@@ -49,7 +49,9 @@ Servers:
       # ...
 ```
 *Note: application port can be changed by ASPNETCORE_URLS=http://+:5000*
+
 *Ports can be other if you change example configs, but exposed must be TCP/80 for Watchdog, TCP/1121 for server status API and UDP/1111 for game server*
+
 *But keep port 80 or ASPNETCORE_URLS (if you used this) so server can ping watchdog by localhost in container*
 
 **Example `config.toml`:**
