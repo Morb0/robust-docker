@@ -13,7 +13,8 @@ $ docker run \
 	--mount type=bind,source=/my/path/test-config.toml,target=/publish/instances/test/config.toml \
 	-p 5000:80/tcp \
 	-p 1121:1121/tcp \
-	-p 1111:1111/udp \
+	-p 1121:1121/tcp \
+	-p 44880:44880/udp \
 	morb0/ss14-watchdog:latest
 ```
 
@@ -50,7 +51,7 @@ Servers:
 ```
 *Note: application port can be changed by ASPNETCORE_URLS=http://+:5000*
 
-*Ports can be other if you change example configs, but exposed must be TCP/80 for Watchdog, TCP/1121 for server status API and UDP/1111 for game server*
+*Ports can be other if you change example configs, but exposed must be TCP/80 for Watchdog, TCP/1121 for server status API, UDP/1111 for game server and TCP/44880 for metrics*
 
 *But keep port 80 or ASPNETCORE_URLS (if you used this) so server can ping watchdog by localhost in container*
 
@@ -72,7 +73,7 @@ connectaddress = "udp://myserverip:1111"
 [metrics]
 enabled = true
 host = "0.0.0.0"
-port = 44882
+port = 44880
 
 # ...
 ```
