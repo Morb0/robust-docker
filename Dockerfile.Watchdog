@@ -9,6 +9,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
 COPY --from=mcr.microsoft.com/dotnet/aspnet:7.0 /usr/share/dotnet/shared /usr/share/dotnet/shared
 WORKDIR /publish
 COPY --from=build-env /publish .
-RUN mkdir data
-EXPOSE 80
+
+VOLUME [ "/publish/instances" ]
+
 ENTRYPOINT ["./SS14.Watchdog"]
