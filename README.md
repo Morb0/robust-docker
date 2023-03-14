@@ -13,8 +13,8 @@ $ docker run \
 	--mount type=bind,source=/my/path/test-config.toml,target=/publish/instances/test/config.toml \
 	-p 5000:80/tcp \
 	-p 1121:1121/tcp \
-	-p 1121:1121/tcp \
-	-p 44880:44880/udp \
+	-p 1111:1111/udp \
+	-p 44880:44880/tcp \
 	morb0/ss14-watchdog:latest
 ```
 
