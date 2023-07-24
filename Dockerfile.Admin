@@ -5,9 +5,8 @@ COPY SS14.Admin SS14.Admin/
 RUN dotnet restore ./SS14.Admin
 RUN dotnet publish -c Release --no-self-contained -o /publish ./SS14.Admin
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 as runtime
 WORKDIR /publish
 COPY --from=build-env /publish .
-RUN mkdir data
 EXPOSE 27690
 ENTRYPOINT ["./SS14.Admin"]
