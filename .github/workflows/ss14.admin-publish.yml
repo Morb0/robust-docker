@@ -12,14 +12,10 @@ jobs:
         with:
           repository: space-wizards/SS14.Admin
 
-      - name: Checkout SS14
+      - name: Checkout submodules
         run: |
-          git clone https://github.com/space-wizards/space-station-14 SS14
-          cd SS14
-          git checkout 0982ef3cea8a1e623756433480e0ba4ab8fbc4a3
           git submodule update --init --recursive
-          cd ..
-          
+
       - name: Checkout files
         uses: Bhacaz/checkout-files@v2
         with:
