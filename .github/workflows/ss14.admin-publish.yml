@@ -17,12 +17,9 @@ jobs:
           git submodule update --init --recursive
 
       - name: Checkout files
-        uses: actions/checkout@v3
+        uses: Bhacaz/checkout-files@v2
         with:
-          sparse-checkout: |
-            Dockerfile.Admin
-            ss14-admin-dockerify.patch
-          sparse-checkout-cone-mode: false
+          files: Dockerfile.Admin ss14-admin-dockerify.patch
 
       - name: Apply patch file
         run: |
