@@ -24,7 +24,7 @@ jobs:
       - name: Apply patch file
         run: |
           cd ./SS14.Admin
-          git apply ss14-admin-dockerify.patch
+          git apply ../ss14-admin-dockerify.patch
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
