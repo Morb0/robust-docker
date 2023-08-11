@@ -16,7 +16,14 @@ jobs:
         run: |
           git submodule update --init --recursive
 
-      - name: Apply patch
+      - name: Checkout patch file
+        uses: actions/checkout@v3
+        with:
+          sparse-checkout: |
+            ss14-admin-dockerify.patch
+          sparse-checkout-cone-mode: false
+
+      - name: Apply patch file
         run: |
           git apply ss14-admin-dockerify.patch
 
