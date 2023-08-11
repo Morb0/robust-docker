@@ -16,6 +16,10 @@ jobs:
         run: |
           git submodule update --init --recursive
 
+      - name: Apply patch
+        run: |
+          git apply ss14-admin-dockerify.patch
+
       - name: Checkout files
         uses: Bhacaz/checkout-files@v2
         with:
