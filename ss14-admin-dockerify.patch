@@ -4,8 +4,8 @@ Date: Fri, 11 Aug 2023 09:53:11 +0300
 Subject: [PATCH] Dockerify
 
 ---
- SS14.Admin/Startup.cs | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ SS14.Admin/Startup.cs | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/SS14.Admin/Startup.cs b/SS14.Admin/Startup.cs
 index f2a0a19..50aebe3 100644
@@ -23,21 +23,12 @@ index f2a0a19..50aebe3 100644
                      options.Scope.Add("openid");
                      options.Scope.Add("profile");
                      options.GetClaimsFromUserInfoEndpoint = true;
-+					options.NonceCookie.SameSite = SameSiteMode.None;
++					               options.NonceCookie.SameSite = SameSiteMode.None;
 +                    options.NonceCookie.SecurePolicy = CookieSecurePolicy.Always;
 +                    options.CorrelationCookie.SameSite = SameSiteMode.None;
 +                    options.CorrelationCookie.SecurePolicy = CookieSecurePolicy.Always;
  
                      options.Events.OnTokenValidated = async ctx =>
                      {
-@@ -111,7 +116,6 @@ namespace SS14.Admin
-             }
- 
-             app.UseAuthentication();
--            app.UseHttpsRedirection();
-             app.UseStaticFiles();
- 
-             app.UseRouting();
--- 
 2.40.1.windows.1
 
