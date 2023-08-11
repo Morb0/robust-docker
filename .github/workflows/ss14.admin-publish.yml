@@ -23,8 +23,8 @@ jobs:
 
       - name: Apply patch file
         run: |
-          ls ./SS14.Admin
-          git apply --reject --whitespace=fix ss14-admin-dockerify.patch
+          cd ./SS14.Admin
+          git apply ss14-admin-dockerify.patch
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
