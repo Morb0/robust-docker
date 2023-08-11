@@ -81,13 +81,6 @@ port = 44880
 
 ## SS14.Admin
 [Repository](https://github.com/space-wizards/SS14.Admin) | Documentation | [Docker Hub](https://hub.docker.com/r/morb0/ss14-admin)
-
-❗ Only can be build on `0982ef3cea8a1e623756433480e0ba4ab8fbc4a3` commit of SS14 repository.  Because current repository submodule version not updated for `PlayTime` feature and latest use unsupported .NET 7 ¯\\\_(ツ)\_/¯
-
-```console
-$ cd SS14; git checkout 0982ef3cea8a1e623756433480e0ba4ab8fbc4a3;
-```
-
 **Run:**
 ```console
 $ docker run \
