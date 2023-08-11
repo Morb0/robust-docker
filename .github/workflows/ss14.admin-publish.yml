@@ -23,7 +23,7 @@ jobs:
 
       - name: Apply patch file
         run: |
-          ls
+          cat SS14.Admin/Startup.cs
           git apply --reject --whitespace=fix ss14-admin-dockerify.patch
 
       - name: Log in to Docker Hub
