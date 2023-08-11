@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: space-wizards/SS14.Admin
 
@@ -17,12 +17,16 @@ jobs:
           git submodule update --init --recursive
 
       - name: Checkout files
-        uses: Bhacaz/checkout-files@v2
+        uses: actions/checkout@v3
         with:
-          files: Dockerfile.Admin ss14-admin-dockerify.patch
+          sparse-checkout: |
+            Dockerfile.Admin
+            ss14-admin-dockerify.patch
+          sparse-checkout-cone-mode: false
 
       - name: Apply patch file
         run: |
+          ls
           git apply ss14-admin-dockerify.patch
 
       - name: Log in to Docker Hub
