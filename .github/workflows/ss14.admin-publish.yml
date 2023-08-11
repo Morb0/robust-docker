@@ -24,7 +24,7 @@ jobs:
       - name: Apply patch file
         run: |
           cat SS14.Admin/Startup.cs
-          git apply --reject --whitespace=fix ss14-admin-dockerify.patch
+          git apply --reject --ignore-space-change --ignore-whitespace ss14-admin-dockerify.patch
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
