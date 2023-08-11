@@ -16,21 +16,14 @@ jobs:
         run: |
           git submodule update --init --recursive
 
-      - name: Checkout patch file
-        uses: actions/checkout@v3
+      - name: Checkout files
+        uses: Bhacaz/checkout-files@v2
         with:
-          sparse-checkout: |
-            ss14-admin-dockerify.patch
-          sparse-checkout-cone-mode: false
+          files: Dockerfile.Admin ss14-admin-dockerify.patch
 
       - name: Apply patch file
         run: |
           git apply ss14-admin-dockerify.patch
-
-      - name: Checkout files
-        uses: Bhacaz/checkout-files@v2
-        with:
-          files: Dockerfile.Admin
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
