@@ -10,11 +10,8 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
         with:
+          submodules: recursive
           repository: space-wizards/SS14.Admin
-
-      - name: Checkout submodules
-        run: |
-          git submodule update --init --recursive
 
       - name: Checkout files
         uses: Bhacaz/checkout-files@v2
