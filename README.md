@@ -18,7 +18,9 @@ $ docker run \
 	morb0/ss14-watchdog:latest
 ```
 
-**Example `appsettings.yml`:**
+<details>
+  <summary>Example appsettings.yml:</summary>
+
 ```yml
 Serilog:
   Using: [ "Serilog.Sinks.Console", "Serilog.Sinks.Loki" ]
@@ -49,13 +51,16 @@ Servers:
       ApiPort: 1121
       # ...
 ```
+</details>
 *Note: application port can be changed by ASPNETCORE_URLS=http://+:5000*
 
 *Ports can be other if you change example configs, but exposed must be TCP/80 for Watchdog, TCP/1121 for server status API, UDP/1111 for game server and TCP/44880 for metrics*
 
 *But keep port 80 or ASPNETCORE_URLS (if you used this) so server can ping watchdog by localhost in container*
 
-**Example `config.toml`:**
+<details>
+  <summary>Example config.toml:</summary>
+
 ```toml
 # ...
 
@@ -77,7 +82,7 @@ port = 44880
 
 # ...
 ```
-
+</details>
 
 ## SS14.Admin
 [Repository](https://github.com/space-wizards/SS14.Admin) | Documentation | [Docker Hub](https://hub.docker.com/r/morb0/ss14-admin)
@@ -91,7 +96,9 @@ $ docker run \
 ```
 
 
-**Example `appsettings.yml`:**
+<details>
+  <summary>Example appsettings.json:</summary>
+
 ```yml
 Serilog:
   Using: [ "Serilog.Sinks.Console" ]
@@ -132,8 +139,11 @@ Auth:
 
 authServer: "https://central.spacestation14.io/auth"
 ```
+</details>
 
-**Example Nginx config:**
+<details>
+  <summary>Example Nginx config:</summary>
+
 ```nginx
 location /admin/ {
 	proxy_pass          http://localhost:27689;
@@ -151,7 +161,7 @@ location /admin/ {
 	proxy_busy_buffers_size  256k;
 }
 ```
-
+</details>
 
 ## Robust.Cdn
 [Repository](https://github.com/space-wizards/Robust.Cdn) | [Documentation](https://docs.spacestation14.io/en/hosting/robust-cdn) | [Docker Hub](https://hub.docker.com/r/morb0/robust.cdn)
@@ -166,7 +176,9 @@ $ docker run \
 	morb0/robust.cdn:latest
 ```
 
-**Example `appsettings.json`:**
+<details>
+  <summary>Example appsettings.json:</summary>
+
 ```json
 {
   "Logging": {
@@ -185,3 +197,59 @@ $ docker run \
   }
 }
 ```
+</details>
+
+## SS14.MapServer
+[Repository](https://github.com/juliangiebel/SS14.MapServer) | Documentation | [Docker Hub](https://hub.docker.com/r/morb0/ss14-mapserver)
+
+**Run:**
+```console
+$ docker run \
+	--mount type=bind,source=/my/path/appsettings.yml,target=/app/appsettings.yaml \
+        --mount type=bind,source=/my/path/private-key.pem,target=/app/private-key.pem \
+	--mount type=volume,source=ss14-mapserver_data,target=/app/build \
+	-p 5000:80 \
+	morb0/ss14-mapserver:latest
+```
+
+<details>
+  <summary>Example appsettings.json:</summary>
+
+```yaml
+Serilog:
+  Using: [ "Serilog.Sinks.Console" ]
+  MinimumLevel:
+    Default: "Information"
+    Override:
+      SS14: "Information"
+      Microsoft: "Warning"
+      Microsoft.Hosting.Lifetime: "Information"
+      Microsoft.AspNetCore: "Warning"
+      Microsoft.AspNetCore.DataProtection: "Error"
+
+  WriteTo:
+    - Name: Console
+      Args:
+	OutputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {SourceContext}] {Message:lj}{NewLine}{Exception}"
+
+  Enrich: [ "FromLogContext" ]
+
+DetailedErrors: true
+ConnectionStrings:
+    default: "Server=postgres;Port=5432;Database=ss14_mapserver;User Id=ss14mapserver;Password=secret;"
+
+AllowedHosts: "*"
+
+Auth:
+  ApiKey: "secret"
+
+Github:
+  AppName: "app-name"
+  AppId: 0000
+  AppPrivateKeyLocation: "/app/private-key.pem"
+  AppWebhookSecret: "secret"
+
+Git:
+  RepositoryUrl: "https://github.com/space-syndicate/space-station-14.git"
+```
+</details>
