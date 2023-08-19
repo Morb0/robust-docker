@@ -86,6 +86,7 @@ port = 44880
 
 ## SS14.Admin
 [Repository](https://github.com/space-wizards/SS14.Admin) | Documentation | [Docker Hub](https://hub.docker.com/r/morb0/ss14-admin)
+
 **Run:**
 ```console
 $ docker run \
@@ -196,6 +197,54 @@ $ docker run \
     "VersionDiskPath": "/builds"
   }
 }
+```
+</details>
+
+## SS14.Changelog
+[Repository](https://github.com/space-wizards/SS14.Changelog) | [Documentation](https://docs.spacestation14.io/en/hosting/changelogs) | [Docker Hub](https://hub.docker.com/r/morb0/ss14-changelog)
+
+**Run:**
+```console
+$ docker run \
+	--mount type=bind,source=/my/path/appsettings.json,target=/publish/appsettings.json \
+        --mount type=bind,source=/my/path/ssh_key,target=/publish/ssh_key \
+	--mount type=volume,source=repo_data,target=/publish/repo \
+	-p 4566:4566 \
+	morb0/ss14-changelog:latest
+```
+
+<details>
+  <summary>Example appsettings.json:</summary>
+
+```yaml
+Serilog:
+  Using: [ "Serilog.Sinks.Console", "Serilog.Sinks.Loki" ]
+  MinimumLevel:
+    Default: Information
+    Override:
+      SS14: Debug
+      Microsoft: "Warning"
+      Microsoft.Hosting.Lifetime: "Information"
+      Microsoft.AspNetCore: Warning
+
+  WriteTo:
+    - Name: Console
+      Args:
+        OutputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {SourceContext}] {Message:lj}{NewLine}{Exception}"
+
+  Enrich: [ "FromLogContext" ]
+
+AllowedHosts: "*"
+
+urls: "http://localhost:4566"
+
+Changelog:
+  GitHubSecret: "secretGH"
+  ChangelogBranchName: "master"
+  ChangelogFilename: "ChangelogMyFork.yml"
+  SshKey: "/publish/ssh_key"
+  ChangelogRepo: "/publish/repo"
+  DelaySeconds: 60
 ```
 </details>
 
