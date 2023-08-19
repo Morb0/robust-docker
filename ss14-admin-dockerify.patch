@@ -1,29 +1,21 @@
-From b857dcd3ee8a6caae43ee22ef446b4ccffb4ee88 Mon Sep 17 00:00:00 2001
+From f9a5c90ca67303f600d9d1ece71d7cb036504e6a Mon Sep 17 00:00:00 2001
 From: Morb0 <14136326+Morb0@users.noreply.github.com>
-Date: Fri, 11 Aug 2023 09:53:11 +0300
-Subject: [PATCH] Dockerify
+Date: Sun, 20 Aug 2023 00:32:05 +0300
+Subject: [PATCH] fix
 
 ---
- SS14.Admin/Startup.cs | 5 +++++
- 1 file changed, 5 insertions(+)
+ SS14.Admin/Startup.cs | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/SS14.Admin/Startup.cs b/SS14.Admin/Startup.cs
-index f2a0a19..50aebe3 100644
+index f2a0a19..2de9773 100644
 --- a/SS14.Admin/Startup.cs
 +++ b/SS14.Admin/Startup.cs
-@@ -1,6 +1,7 @@
- using System.IdentityModel.Tokens.Jwt;
- using System.Net;
- using Content.Server.Database;
-+using Microsoft.AspNetCore.Http;
- using Microsoft.AspNetCore.HttpOverrides;
- using Microsoft.EntityFrameworkCore;
- using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-@@ -67,6 +68,10 @@ namespace SS14.Admin
+@@ -67,6 +67,18 @@ namespace SS14.Admin
                      options.Scope.Add("openid");
                      options.Scope.Add("profile");
                      options.GetClaimsFromUserInfoEndpoint = true;
-+					               options.NonceCookie.SameSite = SameSiteMode.None;
++                    options.NonceCookie.SameSite = SameSiteMode.None;
 +                    options.NonceCookie.SecurePolicy = CookieSecurePolicy.Always;
 +                    options.CorrelationCookie.SameSite = SameSiteMode.None;
 +                    options.CorrelationCookie.SecurePolicy = CookieSecurePolicy.Always;
@@ -31,11 +23,21 @@ index f2a0a19..50aebe3 100644
 +                    options.Events.OnRedirectToIdentityProvider = async ctx =>
 +                    {
 +                        if (ctx.ProtocolMessage.RedirectUri.StartsWith("http://"))
-+                            ctx.ProtocolMessage.RedirectUri = ctx.ProtocolMessage.RedirectUri.Replace("http://", "https://");
++                            ctx.ProtocolMessage.RedirectUri =
++                                ctx.ProtocolMessage.RedirectUri.Replace("http://", "https://");
 +                        await Task.FromResult(0);
 +                    };
  
                      options.Events.OnTokenValidated = async ctx =>
                      {
+@@ -111,7 +123,6 @@ namespace SS14.Admin
+             }
+ 
+             app.UseAuthentication();
+-            app.UseHttpsRedirection();
+             app.UseStaticFiles();
+ 
+             app.UseRouting();
+-- 
 2.40.1.windows.1
 
