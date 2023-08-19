@@ -27,6 +27,13 @@ index f2a0a19..50aebe3 100644
 +                    options.NonceCookie.SecurePolicy = CookieSecurePolicy.Always;
 +                    options.CorrelationCookie.SameSite = SameSiteMode.None;
 +                    options.CorrelationCookie.SecurePolicy = CookieSecurePolicy.Always;
++
++                    options.Events.OnRedirectToIdentityProvider = async ctx =>
++                    {
++                        if (ctx.ProtocolMessage.RedirectUri.StartsWith("http://"))
++                            ctx.ProtocolMessage.RedirectUri = ctx.ProtocolMessage.RedirectUri.Replace("http://", "https://");
++                        await Task.FromResult(0);
++                    };
  
                      options.Events.OnTokenValidated = async ctx =>
                      {
