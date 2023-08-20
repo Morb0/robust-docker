@@ -8,6 +8,8 @@ RUN dotnet publish -c Release --no-self-contained -o /publish
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
 WORKDIR /publish
 COPY --from=build-env /publish .
+RUN apt-get -y update
+RUN apt-get -y install git
 RUN mkdir repo
 
 ENTRYPOINT ["./SS14.Changelog"]
