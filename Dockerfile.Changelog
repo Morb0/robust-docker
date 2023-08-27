@@ -1,5 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 as build-env
 WORKDIR /src
+RUN apt-get update && apt-get -qq -y install python3
 COPY SS14.Changelog/*.csproj .
 RUN dotnet restore
 COPY SS14.Changelog .
