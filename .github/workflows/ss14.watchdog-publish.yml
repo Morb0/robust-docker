@@ -17,10 +17,6 @@ jobs:
         with:
           files: Dockerfile.Watchdog ss14-watchdog-auth.patch
 
-      - name: Apply patch file
-        run: |
-          git apply --reject --ignore-space-change --ignore-whitespace ss14-watchdog-auth.patch
-
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
         with:
