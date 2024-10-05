@@ -10,7 +10,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 as runtime
 WORKDIR /publish
 COPY --from=build-env /publish .
 RUN apt-get -y update
-RUN apt-get -y install git python3
+RUN apt-get -y install git python3 pip
+RUN pip install pyyaml --break-system-packages
 RUN mkdir repo
 
 ENTRYPOINT ["./SS14.Changelog"]
