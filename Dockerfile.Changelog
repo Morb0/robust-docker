@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 as build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0 as build-env
 WORKDIR /src
 RUN apt-get update && apt-get -y install python3
 COPY SS14.Changelog/*.csproj .
@@ -6,7 +6,7 @@ RUN dotnet restore
 COPY SS14.Changelog .
 RUN dotnet publish -c Release --no-self-contained -o /publish
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 as runtime
 WORKDIR /publish
 COPY --from=build-env /publish .
 RUN apt-get -y update
