@@ -5,7 +5,9 @@ RUN dotnet restore
 COPY SS14.Watchdog .
 RUN dotnet publish -c Release --no-self-contained -o /publish
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 as runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 as runtime
+COPY --from=mcr.microsoft.com/dotnet/aspnet:8.0 /usr/share/dotnet /usr/share/dotnet
+
 WORKDIR /publish
 COPY --from=build-env /publish .
 
