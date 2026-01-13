@@ -6,6 +6,11 @@ COPY SS14.Watchdog .
 RUN dotnet publish -c Release --no-self-contained -o /publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 as runtime
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends libkrb5-3 \
+ && rm -rf /var/lib/apt/lists/*
+
 COPY --from=mcr.microsoft.com/dotnet/aspnet:9.0 /usr/share/dotnet /usr/share/dotnet
 
 WORKDIR /publish
