@@ -4,7 +4,6 @@ on: workflow_dispatch
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/ss14.changelog
 
 jobs:
   push_to_registry:
@@ -37,5 +36,5 @@ jobs:
           context: .
           file: Dockerfile.Changelog
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          tags: ghcr.io/morb0/ss14.changelog:latest
 
