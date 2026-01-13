@@ -37,4 +37,5 @@ jobs:
           context: .
           file: Dockerfile.Changelog
           push: true
-          tags: morb0/ss14-changelog:latest
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
